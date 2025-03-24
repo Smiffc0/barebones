@@ -5,7 +5,7 @@ on:
     # workflow_dispatch:
     push:
         paths:
-        - "folder-to-watch"
+        - "folder-to-watch/**"
 
   # pull_request:
   #   branches-ignore:
