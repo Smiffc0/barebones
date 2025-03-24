@@ -1,1 +1,42 @@
+name: TDP Notebook Unittesting
+run-name: workflow run by ${{ github.actor }}
 
+on: 
+    # workflow_dispatch:
+    push:
+        paths:
+        - "folder-to-watch"
+
+  # pull_request:
+  #   branches-ignore:
+  #     - 'main'
+  #   types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+env:
+  PUSH_CHANGES: true
+
+jobs:
+  run-notebook-unittests:
+    runs-on: windows-latest
+    name: Pass Vars Test workfloq
+
+    steps:
+      - run: echo "Branch name is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
+      - name: set env vars
+        id: set-env-vars
+        run: |
+            $changes = 10
+            echo "changes=$changes" >> $GITHUB_OUTPUT
+            echo "FOO=yeah" >> $GITHUB_OUTPUT
+            echo "BAR=nah" >> $GITHUB_OUTPUT
+
+      - name: Use env var
+        run: |
+          echo "getting env vars"
+          echo ${{ steps.set-env-vars.outputs.changes }}
+          echo ${{ steps.set-env-vars.outputs.FOO }}
+          echo ${{ steps.set-env-vars.outputs.BAR }}
