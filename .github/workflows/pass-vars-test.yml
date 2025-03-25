@@ -26,6 +26,9 @@ jobs:
     steps:
       - run: echo "Branch name is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
+      - name: checkout feature branch
+        uses: actions/checkout@v4
+
       - name: load variables
         id: load-variables
         shell: pwsh
