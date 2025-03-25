@@ -33,7 +33,8 @@ jobs:
         id: load-variables
         shell: pwsh
         run: |
-          $variables = Get-content -Raw "./variables/variables_devl.yml" | convertFrom-json -AsHashtable
+          $variables = Get-content -Raw "./variables/variables_devl.yml"
+          Write-Host("[DEBUG] $variables")
           $variables.GetEnumerator() | ForEach-Object {
             $name = $_.key 
             $value = $_.value
