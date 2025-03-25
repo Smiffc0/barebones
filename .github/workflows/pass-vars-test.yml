@@ -33,7 +33,7 @@ jobs:
         id: load-variables
         shell: pwsh
         run: |
-          $variables = Get-content -Raw "./variables/variables_devl.yml" | Select-Object -skip 1
+          $variables = Get-content "./variables/variables_devl.yml" | Select-Object -skip 1
           $variables.GetEnumerator() | ForEach-Object {
             $name = $_.split(':')[0].trim()
             $value = $_.split(':')[1].trim()
