@@ -37,6 +37,6 @@ jobs:
       - name: Use env var
         run: |
           echo "getting env vars"
-          echo ${{ env.outputs.changes }}
+          echo ${{ env.changes }}
           echo ${{ steps.set-env-vars.outputs.FOO }}
           echo ${{ steps.set-env-vars.outputs.BAR }}
