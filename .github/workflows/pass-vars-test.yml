@@ -33,11 +33,10 @@ jobs:
         id: load-variables
         shell: pwsh
         run: |
-          $variables = Get-content -Raw "./variables/variables_devl.yml"
-          Write-Host("[DEBUG] $variables")
+          $variables = Get-content -Raw "./variables/variables_devl.yml" | Select-Object -skip 1
           $variables.GetEnumerator() | ForEach-Object {
-            $name = $_.key 
-            $value = $_.value
+            $name = $_.split(':')[0].trim()
+            $value = $_.split(':')[1].trim()
             echo "$name=$value" >> $ENV:GITHUB_ENV
             Write-Host("[DEBUG] $name=$value")
           }
@@ -56,3 +55,8 @@ jobs:
           echo ${{ env.changes }}
           echo ${{ steps.set-env-vars.outputs.FOO }}
           echo ${{ steps.set-env-vars.outputs.BAR }}
+          echo ${{ env.variable_1 }}
+          echo ${{ env.variable_2 }}
+          echo ${{ env.variable_3 }}
+          echo ${{ env.variable_4 }}
+          echo ${{ env.variable_5 }}
