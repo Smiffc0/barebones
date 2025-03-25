@@ -30,13 +30,13 @@ jobs:
         id: set-env-vars
         run: |
             $changes = 10
-            echo "changes=$changes" >> $ENV:GITHUB_OUTPUT
+            echo "changes=$changes" >> $ENV:GITHUB_ENV
             echo "FOO=yeah" >> $ENV:GITHUB_OUTPUT
             echo "BAR=nah" >> $ENV:GITHUB_OUTPUT
 
       - name: Use env var
         run: |
           echo "getting env vars"
-          echo ${{ steps.set-env-vars.outputs.changes }}
+          echo ${{ env.outputs.changes }}
           echo ${{ steps.set-env-vars.outputs.FOO }}
           echo ${{ steps.set-env-vars.outputs.BAR }}
