@@ -4,3 +4,4 @@ variables:
   variable_3: value_3
   variable_4: value_4
   variable_5: value_5
+  # To be removed
