@@ -26,6 +26,18 @@ jobs:
     steps:
       - run: echo "Branch name is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
+      - name: load variables
+        id: load-variables
+        shell: pwsh
+        run: |
+          $variables = Get-content -Raw "./variables/variables_devl.json" | convertFrom-json -AsHashtable
+          $variables.GetEnumerator() | ForEach-Object {
+            $name = $_.key 
+            $value = $_.value
+            echo "$name=$value" >> $ENV:GITHUB_ENV
+            Write-Host("[DEBUG] $name=$value")
+          }
+
       - name: set env vars
         id: set-env-vars
         run: |
